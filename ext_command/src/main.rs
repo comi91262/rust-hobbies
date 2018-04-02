@@ -1,9 +1,17 @@
 #[macro_use]
+extern crate error_chain;
 extern crate regex;
 
 use std::process::Command;
 use regex::Regex;
 
+error_chain!{
+    foreign_links {
+        Io(std::io::Error);
+        Regex(regex::Error);
+        Utf8(std::string::FromUtf8Error);
+    }
+}
 
 #[derive(PartialEq, Default, Clone, Debug)]
 struct Commit {
@@ -11,18 +19,18 @@ struct Commit {
     message: String,
 }
 
-fn main() {
-    let output = Command::new("git").arg("log").arg("--oneline").output().unwrap();
+fn run() -> Result<()> {
+    let output = Command::new("git").arg("log").arg("--oneline").output()?;
 
     if !output.status.success() {
-        panic!("Command executed with failing error code");
+        bail!("Command executed with failing error code");
     }
 
     let pattern = Regex::new(r"(?x)
                                ([0-9a-fA-F]+) # commit hash
-                               (.*)           # The commit message").unwrap();
+                               (.*)           # The commit message")?;
 
-    String::from_utf8(output.stdout).unwrap()
+    String::from_utf8(output.stdout)?
         .lines()
         .filter_map(|line| pattern.captures(line))
         .map(|cap| {
@@ -34,4 +42,11 @@ fn main() {
         .take(5)
         .for_each(|x| println!("{:?}", x));
 
+    Ok(())
 }
+
+fn main(){
+    run();
+}
+
+

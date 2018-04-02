@@ -5,3 +5,4 @@ authors = ["ykonomi <hgKaguyaToupako4er@gmail.com>"]
 
 [dependencies]
 regex = "0.2"
+error-chain = "0.11.0"
