@@ -4,8 +4,12 @@ extern crate regex;
 
 use std::process::Command;
 use regex::Regex;
+use std::env;
 
 error_chain!{
+    errors {
+        ArgError
+    }
     foreign_links {
         Io(std::io::Error);
         Regex(regex::Error);
@@ -20,33 +24,50 @@ struct Commit {
 }
 
 fn run() -> Result<()> {
-    let output = Command::new("git").arg("log").arg("--oneline").output()?;
+    let output = Command::new("git").arg("status").arg("-s").output()?;
 
-    if !output.status.success() {
-        bail!("Command executed with failing error code");
+    let args: Vec<String> = env::args().collect();
+    
+    if args.len() != 4 {
+       // bail!("Usage: toy-deploy PATH1 PATH2 target");
+       bail!(Error::ArgError);
     }
 
-    let pattern = Regex::new(r"(?x)
-                               ([0-9a-fA-F]+) # commit hash
-                               (.*)           # The commit message")?;
 
-    String::from_utf8(output.stdout)?
-        .lines()
-        .filter_map(|line| pattern.captures(line))
-        .map(|cap| {
-                 Commit {
-                     hash: cap[1].to_string(),
-                     message: cap[2].trim().to_string(),
-                 }
-             })
-        .take(5)
-        .for_each(|x| println!("{:?}", x));
-
+//    if !output.status.success() {
+//        bail!("Command executed with failing error code");
+//    }
+//
+//    let pattern = Regex::new(r"(?x)
+//                               ([0-9a-fA-F]+) # commit hash
+//                               (.*)           # The commit message")?;
+//
+//    String::from_utf8(output.stdout)?
+//        .lines()
+//        .filter_map(|line| pattern.captures(line))
+//        .map(|cap| {
+//                 Commit {
+//                     hash: cap[1].to_string(),
+//                     message: cap[2].trim().to_string(),
+//                 }
+//             })
+//        .take(5)
+//        .for_each(|x| println!("{:?}", x));
+//
+//
+//    println!("{:?}", args);
+    println!("{:?}", output);
     Ok(())
 }
 
 fn main(){
-    run();
+    match run() {
+        Err(e) => {
+            println!("{}", e);
+        }
+        _ => println!("success")
+    }
+
 }
 
 

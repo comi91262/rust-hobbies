@@ -1,5 +1,5 @@
 [package]
-name = "ext_command"
+name = "toy-deploy"
 version = "0.1.0"
 authors = ["ykonomi <hgKaguyaToupako4er@gmail.com>"]
 
