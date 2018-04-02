@@ -29,8 +29,8 @@ fn run() -> Result<()> {
     let args: Vec<String> = env::args().collect();
     
     if args.len() != 4 {
-       // bail!("Usage: toy-deploy PATH1 PATH2 target");
-       bail!(Error::ArgError);
+       // bail!("");
+       bail!(ErrorKind::ArgError);
     }
 
 
@@ -62,8 +62,8 @@ fn run() -> Result<()> {
 
 fn main(){
     match run() {
-        Err(e) => {
-            println!("{}", e);
+        Err(ArgError) => {
+            println!("Usage: toy-deploy PATH1 PATH2 target");
         }
         _ => println!("success")
     }
