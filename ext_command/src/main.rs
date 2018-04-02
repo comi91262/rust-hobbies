@@ -31,6 +31,10 @@ fn run() -> Result<()> {
         bail!(ErrorKind::ArgError);
     }
 
+    let src_path  = Path::new(&args[1]);
+    let dest_path = Path::new(&args[2]);
+
+
     let output = Command::new("git").arg("status").arg("-s").output()?;
     if !output.status.success() {
         bail!("Command executed with failing error code");
@@ -45,6 +49,11 @@ fn run() -> Result<()> {
             cap[2].to_string()  //=> path
         })
         .for_each(|path| {
+            let s_path = src_path.join(&path);
+            let d_path = dest_path.join(&path);
+            println!("{:?}", s_path.as_os_str());
+           println!("{:?}", d_path.as_os_str());
+            Command::new("cp").arg(s_path.as_os_str()).arg(d_path.as_os_str());
     //        let path = Path::new(&path);
     //        let a = path.join
 
@@ -58,8 +67,9 @@ fn main(){
     use ErrorKind::ArgError;
 
     match run() {
-        Err(_) => {
-            println!("Usage: toy-deploy PATH1 PATH2 target");
+        Err(e) => {
+            println!("{:?}", e);
+            //println!("Usage: toy-deploy PATH1 PATH2 target");
         }
         _ => ()
     }
