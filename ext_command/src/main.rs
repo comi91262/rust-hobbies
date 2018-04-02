@@ -2,6 +2,7 @@
 extern crate error_chain;
 extern crate regex;
 
+use std::path::Path;
 use std::process::Command;
 use regex::Regex;
 use std::env;
@@ -24,48 +25,43 @@ struct Commit {
 }
 
 fn run() -> Result<()> {
-    let output = Command::new("git").arg("status").arg("-s").output()?;
-
     let args: Vec<String> = env::args().collect();
-    
+
     if args.len() != 4 {
-       // bail!("");
-       bail!(ErrorKind::ArgError);
+        bail!(ErrorKind::ArgError);
     }
 
+    let output = Command::new("git").arg("status").arg("-s").output()?;
+    if !output.status.success() {
+        bail!("Command executed with failing error code");
+    }
 
-//    if !output.status.success() {
-//        bail!("Command executed with failing error code");
-//    }
-//
-//    let pattern = Regex::new(r"(?x)
-//                               ([0-9a-fA-F]+) # commit hash
-//                               (.*)           # The commit message")?;
-//
-//    String::from_utf8(output.stdout)?
-//        .lines()
-//        .filter_map(|line| pattern.captures(line))
-//        .map(|cap| {
-//                 Commit {
-//                     hash: cap[1].to_string(),
-//                     message: cap[2].trim().to_string(),
-//                 }
-//             })
-//        .take(5)
-//        .for_each(|x| println!("{:?}", x));
-//
-//
-//    println!("{:?}", args);
-    println!("{:?}", output);
+    let pattern = Regex::new(r"(M )(.*)")?;
+
+    String::from_utf8(output.stdout)?
+        .lines()
+        .filter_map(|line| pattern.captures(line))
+        .map(|cap| {
+            cap[2].to_string()  //=> path
+        })
+        .for_each(|path| {
+    //        let path = Path::new(&path);
+    //        let a = path.join
+
+        });
+
+
     Ok(())
 }
 
 fn main(){
+    use ErrorKind::ArgError;
+
     match run() {
-        Err(ArgError) => {
+        Err(_) => {
             println!("Usage: toy-deploy PATH1 PATH2 target");
         }
-        _ => println!("success")
+        _ => ()
     }
 
 }
