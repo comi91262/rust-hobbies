@@ -18,22 +18,14 @@ error_chain!{
     }
 }
 
-#[derive(PartialEq, Default, Clone, Debug)]
-struct Commit {
-    hash: String,
-    message: String,
-}
-
 fn run() -> Result<()> {
     let args: Vec<String> = env::args().collect();
 
-    if args.len() != 4 {
+    if args.len() != 2 {
         bail!(ErrorKind::ArgError);
     }
 
-    let src_path  = Path::new(&args[1]);
-    let dest_path = Path::new(&args[2]);
-
+    let dest_path = Path::new(&args[1]);
 
     let output = Command::new("git").arg("status").arg("-s").output()?;
     if !output.status.success() {
@@ -42,21 +34,14 @@ fn run() -> Result<()> {
 
     let pattern = Regex::new(r"(M )(.*)")?;
 
-    String::from_utf8(output.stdout)?
+    let _ = String::from_utf8(output.stdout)?
         .lines()
         .filter_map(|line| pattern.captures(line))
         .map(|cap| {
-            cap[2].to_string()  //=> path
-        })
-        .for_each(|path| {
-            let s_path = src_path.join(&path);
-            let d_path = dest_path.join(&path);
-            println!("{:?}", s_path.as_os_str());
-           println!("{:?}", d_path.as_os_str());
-            Command::new("cp").arg(s_path.as_os_str()).arg(d_path.as_os_str());
-    //        let path = Path::new(&path);
-    //        let a = path.join
-
+            let path = cap[2].to_string();
+            let src_path = Path::new(&path);
+            let dest_path = dest_path.join(&path);
+            Command::new("cp").arg(src_path.as_os_str()).arg(dest_path.as_os_str()).spawn()
         });
 
 
@@ -64,14 +49,14 @@ fn run() -> Result<()> {
 }
 
 fn main(){
-    use ErrorKind::ArgError;
-
     match run() {
         Err(e) => {
-            println!("{:?}", e);
-            //println!("Usage: toy-deploy PATH1 PATH2 target");
+            match e.into() {
+                ErrorKind::ArgError => println!("Usage: toy-deploy PATH"),
+                _ => println!("something is wrong")
+            }
         }
-        _ => ()
+        _ => println!("Execution success")
     }
 
 }
