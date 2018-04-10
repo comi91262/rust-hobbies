@@ -24,10 +24,12 @@ fn run() -> Result<()> {
     if args.len() != 2 {
         bail!(ErrorKind::ArgError);
     }
+    println!("Execute:");
 
     let dest_path = Path::new(&args[1]);
 
     let output = Command::new("git").arg("status").arg("-s").output()?;
+
     if !output.status.success() {
         bail!("Command executed with failing error code");
     }
@@ -41,6 +43,8 @@ fn run() -> Result<()> {
             let path = cap[2].to_string();
             let src_path = Path::new(&path);
             let dest_path = dest_path.join(&path);
+            println!("source:      {:?}",  src_path);
+            println!("destination: {:?}", dest_path);
             Command::new("cp").arg(src_path.as_os_str()).arg(dest_path.as_os_str()).spawn()
         });
 
@@ -52,11 +56,11 @@ fn main(){
     match run() {
         Err(e) => {
             match e.into() {
-                ErrorKind::ArgError => println!("Usage: toy-deploy PATH"),
+                ErrorKind::ArgError => println!("Usage: light-deploy PATH"),
                 _ => println!("something is wrong")
             }
         }
-        _ => println!("Execution success")
+        _ => println!("Execution is completed")
     }
 
 }
