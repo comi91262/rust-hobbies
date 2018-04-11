@@ -57,7 +57,7 @@ fn main(){
         Err(e) => {
             match e.into() {
                 ErrorKind::ArgError => println!("Usage: light-deploy PATH"),
-                _ => println!("something is wrong")
+                _ => println!("Something is wrong")
             }
         }
         _ => println!("Execution is completed")
