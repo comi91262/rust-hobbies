@@ -1,12 +1,24 @@
 extern crate data_encoding;
 extern crate ring;
 
+#[macro_use]
+extern crate error_chain;
+
 use data_encoding::HEXUPPER;
 use ring::digest::{Context, Digest, SHA256};
 use std::fs::File;
 use std::io::{BufReader, Read, Write};
 
-fn sha256_digest<R: Read>(mut reader: R) -> Result<Digest> {
+error_chain!{
+    errors {
+    }
+    foreign_links {
+        Io(std::io::Error);
+    }
+}
+
+
+fn sha256_digest(mut reader: BufReader<File>) -> Result<Digest> {
     let mut context = Context::new(&SHA256);
     let mut buffer = [0; 1024];
 
@@ -38,5 +50,5 @@ fn run() -> Result<()> {
 }
 
 fn main() {
-    run();
+ run();
 }
