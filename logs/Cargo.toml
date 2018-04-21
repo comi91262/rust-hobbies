@@ -1,6 +1,6 @@
 [package]
 name = "logs"
 version = "0.1.0"
-authors = ["taba <hgKaguyaToupako4er@gmail.com>"]
+authors = ["ykonomi <hgKaguyaToupako4er@gmail.com>"]
 
 [dependencies]
