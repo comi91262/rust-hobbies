@@ -74,3 +74,37 @@ fn build_github_url(path: &str) -> Result<Url> {
 
     Ok(joined)
 }
+extern crate reqwest;
+extern crate tempdir;
+
+use std::io::copy;
+use std::fs::File;
+use tempdir::TempDir;
+
+fn run() -> Result<()> {
+    // create a temp dir with prefix "example"
+    let tmp_dir = TempDir::new("example")?;
+    // make HTTP request for remote content
+    let target = "https://www.rust-lang.org/logos/rust-logo-512x512.png";
+    let mut response = reqwest::get(target)?;
+
+    let mut dest = {
+        // extract target filename from URL
+        let fname = response
+            .url()
+            .path_segments()
+            .and_then(|segments| segments.last())
+            .and_then(|name| if name.is_empty() { None } else { Some(name) })
+            .unwrap_or("tmp.bin");
+
+        println!("file to download: '{}'", fname);
+        let fname = tmp_dir.path().join(fname);
+        println!("will be located under: '{:?}'", fname);
+        // create file with given name inside the temp dir
+        File::create(fname)?
+    };
+    // data is copied into the target file
+    copy(&mut response, &mut dest)?;
+    // tmp_dir is implicitly removed
+    Ok(())
+}
