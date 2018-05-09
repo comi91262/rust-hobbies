@@ -6,3 +6,8 @@ authors = ["ykonomi <hgKaguyaToupako4er@gmail.com>"]
 [dependencies]
 rocket = "0.3.10"
 rocket_codegen = "0.3.10"
+
+[dependencies.rocket_contrib]
+version = "*"
+default-features = false
+features = ["handlebars_templates", "tera_templates"]
