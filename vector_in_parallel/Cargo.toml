@@ -1,6 +1,0 @@
-[package]
-name = "vector_in_parallel"
-version = "0.1.0"
-authors = ["taba <hgKaguyaToupako4er@gmail.com>"]
-
-[dependencies]
