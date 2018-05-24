@@ -17,12 +17,17 @@ fn main() {
     implement_vertex!(Vertex, position);
 
     let vertex1 = Vertex { position: [-0.5, -0.5] };
-    let vertex2 = Vertex { position: [ 0.0,  0.5] };
-    let vertex3 = Vertex { position: [ 0.5, -0.25] };
-    let shape = vec![vertex1, vertex2, vertex3];
+    let vertex2 = Vertex { position: [ 0.5, -0.5] };
+    let vertex3 = Vertex { position: [-0.5,  0.5] };
+    let vertex4 = Vertex { position: [ 0.5,  0.5] };
+    let shape1 = vec![vertex1, vertex2, vertex4];
+    let shape2 = vec![vertex1, vertex3, vertex4];
 
-    let vertex_buffer = glium::VertexBuffer::new(&display, &shape).unwrap();
+    let vertex_buffer1 = glium::VertexBuffer::new(&display, &shape1).unwrap();
+    let vertex_buffer2 = glium::VertexBuffer::new(&display, &shape2).unwrap();
+
     let indices = glium::index::NoIndices(glium::index::PrimitiveType::TrianglesList);
+
 
     let vertex_shader_src = r#"
         #version 140
@@ -36,7 +41,7 @@ fn main() {
         #version 140
         out vec4 color;
         void main() {
-            color = vec4(1.0, 0.0, 0.0, 1.0);
+            color = vec4(0.0, 1.0, 0.0, 1.0);
         }
     "#;
 
@@ -45,8 +50,10 @@ fn main() {
     let mut closed = false;
     while !closed {
         let mut target = display.draw();
-        target.clear_color(0.0, 0.0, 1.0, 1.0);
-        target.draw(&vertex_buffer, &indices, &program, &glium::uniforms::EmptyUniforms,
+        target.clear_color(0.0, 0.0, 0.0, 1.0);
+        target.draw(&vertex_buffer1, &indices, &program, &glium::uniforms::EmptyUniforms,
+                    &Default::default()).unwrap();
+        target.draw(&vertex_buffer2, &indices, &program, &glium::uniforms::EmptyUniforms,
                     &Default::default()).unwrap();
         target.finish().unwrap();
 
