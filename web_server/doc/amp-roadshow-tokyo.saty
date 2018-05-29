@@ -1,5 +1,5 @@
 % -*- coding: utf-8 -*-
-@require: stdja
+@require: stdjabook
 @require: itemize
 
 document (|
@@ -9,21 +9,28 @@ document (|
     show-toc = true
 |) '<
     +section{はじめに}<
+        +subsection{What is this?}<
+        >
+        +subsection{このレポートを読む際の注意点}<
+            +p {
+                \#から始まる文章は私のコメントである
+            }
+        >
         +subsection{そもそもAMPとは}<
 
         >
     >
     +section{イベント概要}<
         +listing{ 
-            *イベント名： AMP Roadshow Tokyo
-            *日程： 2018 年 4 月 27 日（金） 9:30 - 17:00（開場: 9:00）
-            *場所：グーグル合同会社
-            *定員 ：240 名
+            * イベント名： AMP Roadshow Tokyo
+            * 日程： 2018 年 4 月 27 日（金） 9:30 - 17:00（開場: 9:00）
+            * 場所：グーグル合同会社
+            * 定員 ：240 名
         }
         +subsection{タイムテーブル}<
             +listing{ 
                 * 9:00am 開場
-                * 9:30am ご挨拶と基調講演
+                * 9:30am Introduction and Keynote
                 * 9:45am Rich content experiences with AMP
                 * 10:15am Advanced interactivity with AMP
                 * 10:45am 休憩
@@ -39,53 +46,59 @@ document (|
             }
         >
     >
-    +section{ご挨拶と基調講演}<
+    +section{Introduction and Keynote}<
+        +p {
+            ご質問はhttps://www.sli.do/に投げてください
+        }
         +p {
             Progressive Web Apps: What, Why and How
-            https://www.sli.do/
-
-            AMP : Google 独立のオープンソース
-
+        }
+        +pn {
+            AMPはオープンソース。Googleとは独立したものとして捉えてください.
+        }
+        +p {
             3つの部分
             HTML, JSを拡張する （でも拡張はつらいのであとで変えたい）
             AMP Cache → googleのもっているやつ
             3G 10s  → 3,4s
-
             ページロードを小さくした
 
             10 seconds 
-            to load 75% of web pages on 3G (日本では4Gだけど、世界的には3G)
+            to load 75\% of web pages on 3G (日本では4Gだけど、世界的には3G)
 
-            -7% conversions per 1second delsy
+            -7\% conversions per 1second delsy
             3秒以上loadにかかると半分は離脱する。
 
             AMPいれると遅くなるから入れられないよね...
             → そこをなんとかします。
+        }
+        +p {
+            AMPはOver 4 billiino site 広範囲に普及している.
 
-            \>
-            Timeline 2015j
-            UUeader bidding
+
+            Timeline 2015
+            UUeader binding
             AMP Stories
             AMP for Email
             AMP Ads
             WordPress
             New URL
-
-            Over 4 billiino site 広範囲に普及
-
-            2017 lease half of e-commmerce revenue came from mobile
-
-            Ali Express
-            36% led to 10.5 orders
-            27%のコンバージョン(実際にユーザが商品を買った)を増加
-            AMPで4%コンバージョンを増加させた
-
+        }
+        +p {
+            2017年の電子商取引収入の半分はモバイルからのものです
+        }
+        +p {
+            Ali ExpressのWebサイトの速度改善の例です
+        }
+        +listing {
+            * 36\% led to 10.5 orders
+            * 27\%のコンバージョン(実際にユーザが商品を買った)を増加
+            * AMPで4\%コンバージョンを増加させた
+        }
+        +p {
             \< link rel \> が元々の色々追加した
-
             PWA \<-\> AMP 
-
-            AMP is library\;
-
+            AMPはライブラリであると捉えてください
         }
 >
 
@@ -135,18 +148,15 @@ document (|
 
 +section{Advanced interactivity with AMP}<
     +p { 
-        %   User -\> AMP Page \<- AMP Cache
-        %   欲しいものリスト コメントをする
-        %   \<amp-selector\>
-        %   色を、量、サイズをウェブサイト上で選択させる場合に使用する
-
-        %   \<amp-list\> & \<amp-mustace\>
-
-        %   \<amp-bind\>
-        %   reactとかのやつができる　data-binding
-
-        %   Combinig components
-        %   X + Y = ?
+           User -\> AMP Page \<- AMP Cache
+           欲しいものリスト コメントをする
+           \<amp-selector\>
+           色を、量、サイズをウェブサイト上で選択させる場合に使用する
+           \<amp-list\> & \<amp-mustace\>
+           \<amp-bind\>
+           reactとかのやつができる　data-binding
+           Combinig components
+           X + Y = ?
     }
 >
 
@@ -154,7 +164,7 @@ document (|
     +p {
         PWA：　ブラウザのAPIの組み合わせです。
         ネイティブアプリは...
-        80% of users' top 3 apps　残り20を奪う
+        80\% of users' top 3 apps　残り20を奪う
         一ヶ月につきインストールするアプリの平均は0%
 
         Service Workers: A clinet-side JavaScript proxy
@@ -270,31 +280,33 @@ document (|
     }
 >
 
-+section{} <
-    +p {
-        \# CyberAgent
-        why amp?　search UX and mobile US
-        Sessions
-        7xのSessions
++section{Guest Talk or Panel} <
+    +subsection{CyberAgentの例} <
+        +p{
+            why amp?　search UX and mobile US
+            Sessions
+            7xのSessions
 
-        AD CPM
-        Change AD possions
-        Use \<amp-ad-sticky\>
+            AD CPM
+            Change AD possions
+            Use \<amp-ad-sticky\>
 
-        Search Bar
-        \<amp-bird\> \<amp-from\> \<amp 
-        \* 状態管理
-        \* なんか Vueっぽいことしてる
-
-        \# 一休
+            Search Bar
+            \<amp-bird\> \<amp-from\> \<amp 
+            \* 状態管理
+            \* なんか Vueっぽいことしてる
+        }
+    > 
+    +subsection{一休の例} <
+        +p{
         デザイナーとエンジニアの役割
         新しい企画をする場合、とりあえずデザイナー
         がモックを作る。
 
         リアルタイム性の低いコンテンツはキャッシュに送る
         stylelint
-
-    }
+        }
+    >
 >
 
 +section{Q&A with AMP team}<
