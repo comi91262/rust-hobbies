@@ -45,20 +45,29 @@ fn main() {
     let mut position_x = 0.0;
     let mut position_y = 0.0;
 
-    let uniforms = uniform! {
-        matrix: [
-            [1.0, 0.0, 0.0, 0.0],
-            [0.0, 1.0, 0.0, 0.0],
-            [0.0, 0.0, 1.0, 0.0],
-            [0.0, 0.0, 0.0, 1.0f32]
-        ]
-    };
+    let mut fields = [false; 20 * 20];
 
     while !closed {
         t += 0.0002;
         if t > 0.5 {
             t = -0.5;
         }
+
+        let uniforms = uniform! {
+            matrix: [
+                [1.0, 0.0, 0.0, 0.0],
+                [0.0, if fields[((position_y / 60.0) as u32 * 20 + (position_x / 60.0) as u32) as usize] {
+                    println!("matrix x {:?}", position_x);
+                    println!("matrix y {:?}", position_y);
+                    0.0
+                } else {
+                    1.0f32
+                }, 0.0, 0.0],
+                
+                [0.0, 0.0, 1.0, 0.0],
+                [0.0, 0.0, 0.0, 1.0f32],
+            ]
+        };
 
         let mut target = display.draw();
         target.clear_color(0.0, 0.0, 0.0, 1.0);
@@ -71,17 +80,22 @@ fn main() {
                 glutin::Event::WindowEvent { event, .. } => match event {
                     glutin::WindowEvent::Closed => closed = true,
                     glutin::WindowEvent::CursorMoved {position: (x, y), ..}  => {
-                        position_x = x;
-                        position_y = y;
+                        position_x = if x > 1200.0 { 1200.0 - 1.0 } else if x < 0.0 { 0.0 } else { x };
+                        position_y = if y > 1200.0 { 1200.0 - 1.0 } else if y < 0.0 { 0.0 } else { y };
                     },
                     glutin::WindowEvent::MouseInput {state, ..}  => {
                         match state {
                             glutin::ElementState::Pressed => {
-                                println!("{:?}", ((position_x / 60.0) as u32 + 1));
-                                println!("{:?}", ((position_y / 60.0) as u32 + 1));
+                                let x = (position_x / 60.0) as u32;
+                                let y = (position_y / 60.0) as u32;
+                                println!("{:?}", x);
+                                println!("{:?}", y);
                                 println!("{:?}", state);
+                                println!("{:?}", fields[(y * 20 + x) as usize]);
+                                fields[(y * 20 + x) as usize] = true; 
+                                
                             }
-                            glutin::ElementState::Released =>println!("{:?}", state), 
+                            glutin::ElementState::Released => println!("{:?}", state), 
                         };
                     },
                     _ => ()
