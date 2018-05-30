@@ -1,7 +1,7 @@
 #[macro_use]
 extern crate glium;
 
-mod square;
+mod squares;
 
 fn main() {
     use glium::{glutin, Surface};
@@ -14,9 +14,9 @@ fn main() {
     let context = glutin::ContextBuilder::new();
     let display = glium::Display::new(window, context, &events_loop).unwrap();
 
-    let positions = glium::VertexBuffer::new(&display, &square::VERTICES).unwrap();
+    let positions = glium::VertexBuffer::new(&display, &squares::VERTICES).unwrap();
     let indices = glium::IndexBuffer::new(&display, glium::index::PrimitiveType::TrianglesList,
-                                          &square::INDICES).unwrap();
+                                          &squares::INDICES).unwrap();
 
     let vertex_shader_src = r#"
         #version 140
