@@ -14,16 +14,20 @@ fn main() {
     let context = glutin::ContextBuilder::new();
     let display = glium::Display::new(window, context, &events_loop).unwrap();
 
-    let positions = glium::VertexBuffer::new(&display, &squares::VERTICES).unwrap();
-    let indices = glium::IndexBuffer::new(&display, glium::index::PrimitiveType::TrianglesList,
-                                          &squares::INDICES).unwrap();
+
 
     let vertex_shader_src = r#"
         #version 140
         in vec2 position;
+ 
+        uniform Block {
+            bool[512] fields;
+        };
 
         void main() {
-            gl_Position = vec4(position, 0.0, 1.0);
+           vec2 pos = position;
+           int index = int((pos.y / 60.0) * 20 + (pos.x / 60.0));
+           gl_Position = vec4(pos, 0.0, fields[index]);
         }
     "#;
 
@@ -31,10 +35,8 @@ fn main() {
         #version 140
         out vec4 color;
 
-        uniform mat4 matrix;
-
         void main() {
-            color = matrix * vec4(0.0, 1.0, 0.0, 1.0);
+            color = vec4(0.0, 1.0, 0.0, 1.0);
         }
     "#;
 
@@ -45,33 +47,22 @@ fn main() {
     let mut position_x = 0.0;
     let mut position_y = 0.0;
 
-    let mut fields = [false; 20 * 20];
+    let mut fields = [false; 512];
+
+    for y in 0..20 {
+        for x in 0..20 {
+            let positions = glium::VertexBuffer::new(&display, &[squares::VERTICES[i], squares::VERTICES[i], squares::VERTICES[i]]).unwrap();
+            let indices = glium::index::PrimitiveType
+                IndexBuffer::new(&display, glium::index::PrimitiveType::TrianglesList,
+                                 &squares::INDICES).unwrap();
+        }
+    }
+    let buffer = glium::uniforms::UniformBuffer::new(&display, fields).unwrap();
 
     while !closed {
-        t += 0.0002;
-        if t > 0.5 {
-            t = -0.5;
-        }
-
-        let uniforms = uniform! {
-            matrix: [
-                [1.0, 0.0, 0.0, 0.0],
-                [0.0, if fields[((position_y / 60.0) as u32 * 20 + (position_x / 60.0) as u32) as usize] {
-                    println!("matrix x {:?}", position_x);
-                    println!("matrix y {:?}", position_y);
-                    0.0
-                } else {
-                    1.0f32
-                }, 0.0, 0.0],
-                
-                [0.0, 0.0, 1.0, 0.0],
-                [0.0, 0.0, 0.0, 1.0f32],
-            ]
-        };
-
         let mut target = display.draw();
         target.clear_color(0.0, 0.0, 0.0, 1.0);
-        target.draw(&positions, &indices, &program, &uniforms,
+        target.draw(&positions, &indices, &program, &uniform!{Block: &buffer},
                     &Default::default()).unwrap();
         target.finish().unwrap();
 
