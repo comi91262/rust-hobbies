@@ -20,16 +20,27 @@ fn main() {
         #version 140
         in vec2 position;
  
-        uniform Block {
-            bool[512] fields;
-        };
+        //front t;
 
         void main() {
            vec2 pos = position;
-           int index = int((pos.y / 60.0) * 20 + (pos.x / 60.0));
-           gl_Position = vec4(pos, 0.0, fields[index]);
+           gl_Position = vec4(pos, 0.0, 1.0);
         }
     "#;
+   // let vertex_shader_src = r#"
+   //     #version 140
+   //     in vec2 position;
+ 
+   //     uniform Block {
+   //         bool[512] fields;
+   //     };
+
+   //     void main() {
+   //        vec2 pos = position;
+   //        int index = int((pos.y / 60.0) * 20 + (pos.x / 60.0));
+   //        gl_Position = vec4(pos, 0.0, fields[index]);
+   //     }
+   // "#;
 
     let fragment_shader_src = r#"
         #version 140
@@ -49,20 +60,25 @@ fn main() {
 
     let mut fields = [false; 512];
 
-    for y in 0..20 {
-        for x in 0..20 {
-            let positions = glium::VertexBuffer::new(&display, &[squares::VERTICES[i], squares::VERTICES[i], squares::VERTICES[i]]).unwrap();
-            let indices = glium::index::PrimitiveType
-                IndexBuffer::new(&display, glium::index::PrimitiveType::TrianglesList,
-                                 &squares::INDICES).unwrap();
-        }
-    }
-    let buffer = glium::uniforms::UniformBuffer::new(&display, fields).unwrap();
+    //for y in 0..20 {
+    //    for x in 0..20 {
+    //        let positions = glium::VertexBuffer::new(&display, &[squares::VERTICES[i], squares::VERTICES[i], squares::VERTICES[i]]).unwrap();
+    //        let indices = glium::index::PrimitiveType
+    //            IndexBuffer::new(&display, glium::index::PrimitiveType::TrianglesList,
+    //                             &squares::INDICES).unwrap();
+    //    }
+    //}
+
+    let positions = glium::VertexBuffer::new(&display, &[squares::VERTICES[0], squares::VERTICES[1], squares::VERTICES[2],squares::VERTICES[3]]).unwrap();
+    //let indices = glium::index::NoIndices(glium::index::PrimitiveType::TrianglesList);
+     let indices =
+        glium::IndexBuffer::new(&display, glium::index::PrimitiveType::TrianglesList, &[0u16, 1u16, 22u16, 0u16, 21u16, 22u16]).unwrap();
+    //let buffer = glium::uniforms::UniformBuffer::new(&display, fields).unwrap();
 
     while !closed {
         let mut target = display.draw();
         target.clear_color(0.0, 0.0, 0.0, 1.0);
-        target.draw(&positions, &indices, &program, &uniform!{Block: &buffer},
+        target.draw(&positions, &indices, &program, &glium::uniforms::EmptyUniforms,// uniform::None,//&uniform!{Block: &buffer},
                     &Default::default()).unwrap();
         target.finish().unwrap();
 
