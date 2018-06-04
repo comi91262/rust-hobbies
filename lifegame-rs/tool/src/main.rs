@@ -25,7 +25,7 @@ fn main() {
     //VERTICES
     println!("pub const VERTICES: [Vertex; 441] = [");
     for y in 0..21 {
-        let reg_y = (y - 10) as f32 / 10.0;
+        let reg_y = -1.0 * (y - 10) as f32 / 10.0;
         for x in 0..21 {
             let reg_x = (x - 10) as f32 / 10.0;
             println!("Vertex {{ position: ({:.1}, {:.1})}},", reg_x, reg_y);
