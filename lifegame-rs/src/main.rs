@@ -38,48 +38,23 @@ fn main() {
     let program = glium::Program::from_source(&display, vertex_shader_src, fragment_shader_src, None).unwrap();
 
     let mut t: u32 = 1;
-    let mut closed = false;
     let mut position_x = 0.0;
     let mut position_y = 0.0;
 
     let mut fields = [false; 512];
-    let mut squares: [glium::VertexBuffer<squares::Vertex>; 20 * 20];
-
-    for i in 0..400 {
-        squares[i] = a(&display);
-    }
-
-
-    //for y in 0..20 {
-    //    for x in 0..20 {
-    //        let positions = glium::VertexBuffer::new(&display, &[squares::VERTICES[i], squares::VERTICES[i], squares::VERTICES[i]]).unwrap();
-    //        let indices = glium::index::PrimitiveType
-    //            IndexBuffer::new(&display, glium::index::PrimitiveType::TrianglesList,
-    //                             &squares::INDICES).unwrap();
-    //    }
-    //}
-    //
-    
-    //0 0  (-1.0, 1.0), (-1.0, 0.9), (-0.9, 1.0) (-0.9, -0.9)
-    //1 0  (-0.9, 1.0), (-0.9, 0.9), (-0.8, 1.0) (-0.8, -0.9)
-
-
-
-    //let positions1 =
-    let positions2 = glium::VertexBuffer::new(&display, &[squares::VERTICES[1], squares::VERTICES[2], squares::VERTICES[22], squares::VERTICES[23]]).unwrap();
-    //let positions2 = glium::VertexBuffer::new(&display, &[squares::VERTICES[0], squares::VERTICES[21], squares::VERTICES[22]]).unwrap();
-    //let indices = glium::index::NoIndices(glium::index::PrimitiveType::TrianglesList);
-     let indices =
+    let indices =
         glium::IndexBuffer::new(&display, glium::index::PrimitiveType::TrianglesList, &[0u16, 1u16, 3u16, 0u16, 2u16, 3u16]).unwrap();
-    //let buffer = glium::uniforms::UniformBuffer::new(&display, fields).unwrap();
 
+    let mut closed = false;
     while !closed {
         let mut target = display.draw();
         target.clear_color(0.0, 0.0, 0.0, 1.0);
-        target.draw(&squares[0], &indices, &program, &uniform!{t: if fields[0] { 1.0f32} else { 0.0f32} },
-                    &Default::default()).unwrap();
-        target.draw(&positions2, &indices, &program, &uniform!{t: if fields[1] { 1.0f32} else { 0.0f32} },
-                    &Default::default()).unwrap();
+
+        for i in 0..400 {
+            let position = glium::VertexBuffer::new(&display, &[squares::VERTICES[i], squares::VERTICES[i+1], squares::VERTICES[i+21], squares::VERTICES[i+22]]).unwrap();
+            target.draw(&position, &indices, &program, &uniform!{t: if fields[i] { 1.0f32 } else { 0.0f32 } }, &Default::default()).unwrap();
+        }
+
         target.finish().unwrap();
 
         events_loop.poll_events(|event| {
@@ -111,8 +86,4 @@ fn main() {
             }
         });
     }
-}
-
-fn a(display: &glium::Display) -> glium::VertexBuffer<squares::Vertex> {
- glium::VertexBuffer::new(&display, &[squares::VERTICES[0], squares::VERTICES[1], squares::VERTICES[21], squares::VERTICES[22]]).unwrap()
 }
