@@ -23,15 +23,18 @@ document (|
     >
     +section{そもそもAMPとは}<
         +p {
-            https://www.ampproject.org/learn/overview/の全訳
+            https://www.ampproject.org/learn/overview/より
         }
         +p {
-        An open source effort to improve the content ecosystem for everyone.
-AMP is an open-source library that provides a straightforward way to create web pages that are compelling, smooth, and load near instantaneously for users. AMP pages are just web pages that you can link to and are controlled by you.
+            AMPはオープンソースライブラリであり、魅力的で、スムーズでかつ、瞬時にロードできるwebページを簡単に作る方法を提供します。
+            AMPページは、あなたによって制御でき、あなたがリンクできる単なるウェブページでしかありません。
+            AMPはあなたに既にあるスキルセットやWebページをつくるフレームワークで構築することができます。
+            AMPは多くの異なったプラットフォームでサポートされていて、ブラウザ間で互換性を保ちます。
+            AMPエコシステムには、出版、広告、電子商取引、地方や小規模企業など、2500万のドメイン、
+            100以上のテクノロジープロバイダ、主要なプラットフォームが含まれます。
+        }
+        +p {
 
-AMP builds on your existing skill sets and frameworks to create web pages. AMP is supported by many different platforms, and it's compatible across browsers.
-
-AMP's ecosystem includes 25 million domains, 100+ technology providers, and leading platforms, that span the areas of publishing, advertising, e-commerce, local and small businesses, and more!
 AMP pages are built with 3 core components:
 AMP HTML is HTML with some restrictions for reliable performance.
 
@@ -40,7 +43,6 @@ AMP HTML
 AMP HTML is HTML with some restrictions for reliable performance.
 
 AMP HTML is basically HTML extended with custom AMP properties. The simplest AMP HTML file looks like this:
-
 % <!doctype html>
 %<html ⚡>
 % <head>
