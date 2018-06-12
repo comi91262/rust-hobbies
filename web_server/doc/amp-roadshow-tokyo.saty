@@ -49,7 +49,7 @@ document (|
                 でHTMLを拡張しています。もっともシンプルなAMP HTMLは次のように
                 なります。               
             }
-        +code(`
+            +code(`
 <!doctype html>
 <html amp>
 <head>
@@ -63,21 +63,17 @@ document (|
 </html>
         `);
         +p {
-            Though most tags in an AMP HTML page are regular HTML tags, some HTML tags are replaced with AMP-specific tags (see also HTML Tags in the AMP spec). These custom elements, called AMP HTML components, make common patterns easy to implement in a performant way.
-
-            For example, the amp-img tag provides full srcset support even in browsers that don’t support it yet. Learn how to create your first AMP HTML page.
-
-%AMP pages are discovered by search engines and other platforms through the <link rel=""> HTML tag. You can choose to have a non-AMP version and an AMP version of your page, or just an AMP version. Learn more in Make Your Page Discoverable.
-
+            AMP HTMPページのほとんどのタグは、一般的なHTMLのタグですが、AMP-specificなタグに換えられているものもあります。
+            それらのカスタム要素はAMP HTMLコンポーネントと呼ばれ、一般的なパターンを効率よく簡単な方法で実装できます。
+            例えば、amp-imgタグはまだブラウザによってはサポートされていない完全なsrcsetを提供します。
+        }
+        +p {
+            AMPページは、\<link rel=""\> HTML tagで検索エンジンや他のプラットフォームに発見されます。
+            あなたはnon-AMPとAMPで構成されたサイトか、AMPのみで構成されたサイトのどちらかを選ぶことができます。
         }
         >
         +subsection{AMP JS}< 
             +p {
-                The AMP JS library ensures the fast rendering of AMP HTML pages.
-                The AMP JS library implements all of AMP's best performance practices, manages resource loading and gives you the custom tags mentioned above, all to ensure a fast rendering of your page.
-                Among the biggest optimizations is the fact that it makes everything that comes from external resources asynchronous, so nothing in the page can block anything from rendering.
-                Other performance techniques include the sandboxing of all iframes, the pre-calculation of the layout of every element on page before resources are loaded and the disabling of slow CSS selectors.
-                To learn more about not just the optimizations but the limitations, read the AMP HTML specification.
             }
         >
         +subsection{AMP Cache}< 
