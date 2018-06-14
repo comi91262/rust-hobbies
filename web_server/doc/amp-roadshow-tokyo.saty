@@ -136,21 +136,26 @@ document (|
         +pn {
             AMPはオープンソース。Googleとは独立したものとして捉えてください.
         }
+        +pn {
+            AMPには3つの部分がある
+        }
+        +pn {
+            HTMLとJSを拡張する（でもJSの拡張はつらいのであとで変えたい）
+        }
+        +pn {
+            AMP Cache: Googleのもっているやつ
+        }
         +p {
-            3つの部分
-            HTML, JSを拡張する （でも拡張はつらいのであとで変えたい）
-            AMP Cache → googleのもっているやつ
-            3G 10s  → 3,4s
-            ページロードを小さくした
-
-            10 seconds 
-            to load 75\% of web pages on 3G (日本では4Gだけど、世界的には3G)
-
+            ページロードを3G回線で10sから3,4sに小さくした
+            (日本では4Gだけど、世界的には3Gがまだまだ主流)
+        }
+        +pn {
             -7\% conversions per 1second delsy
             3秒以上loadにかかると半分は離脱する。
-
+        }
+        +pn {
             AMPいれると遅くなるから入れられないよね...
-            → そこをなんとかします。
+            -\> そこをなんとかします。
         }
         +p {
             AMPはOver 4 billiino site 広範囲に普及している.
@@ -420,30 +425,60 @@ document (|
 +section{Monetization with AMP}<
     +p {
     Adverinig & AMP
+        }
+        +pn {
     マネタイズ
+        }
+        +pn {
     　Ads on the Web Today
+        }
+        +pn {
     広告が好きな人がいますか？
+        }
+        +pn {
     なんでみんな嫌いなのか
+        }
+        +pn {
     Disrupive ads   表示が崩れる UXが悪くなる
+        }
+        +pn {
     Slow loadings ads  遅くなる
+        }
+        +pn {
     Unsafe ads      マルウェアにリダイレクトする
+        }
+        +pn {
     　　　　　　　　　　何が広告として配信されているかpublisherは
     　　　　よくわからない！
 
+        }
+        +pn {
     Adに対する AMPの試み
+        }
+        +pn {
     set dimensins
+        }
+        +pn {
     separate the ads
+        }
+        +pn {
     prioritized content
     \<amp-ad\>
     type="
     data-loading-strategy="2.0" 二つのviewportの先にadを
     よみこみ
     \</amp-ad\>
+        }
+        +pn {
 
     ad impression 328%  
     increase in ad revenue paid to publishers メモ取れず
+        }
+        +pn {
 
     New Ad Features
+        }
+        +pn {
     \* Single Request Architecture
     \* Ad Fresh ..
 
@@ -455,17 +490,25 @@ document (|
     ３　
     ４　Single high-rekdfkdfdf
 
+        }
+        +pn {
     \# ads battery use
     AMPにより、80% batteryの消費を抑えた 
+        }
+        +pn {
 
     3x 軽く
     6x 高速化
     13% 売り上げアップ
+        }
+        +pn {
 
     \# celtraQ + 
 
     \# AMP for a langing page
     \# Ensure that post click exprimence
+        }
+        +pn {
 
     Using AMP for your Adword langing page.
     結局
