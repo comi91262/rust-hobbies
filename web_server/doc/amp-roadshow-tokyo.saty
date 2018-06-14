@@ -74,19 +74,29 @@ document (|
         >
         +subsection{AMP JS}< 
             +p {
+                AMP JSライブラリはAMP HTMLページの高速なレンダリングを可能にします。
+                AMP JSライブラリは、AMPのパフォーマンスのための全ての最適化を実施し、
+                リソースのローディングを管理し、上述のカスタムタグを使用することで、高速なページレンダリングを確かにします。
+                最も効果のある最適化の一つは、外部リソースを全て非同期化する
+                ことです。ページの中でレンダリングされる要素をブロックするもの
+                が無くなります。他の最適化技術は、すべてのiframeをサンドボックス
+                にすることや、リソースが読み込まれる前にページの全ての要素のレイア
+                ウトの再計算をすることや、遅いCSSセレクタを無効化することです。
             }
         >
         +subsection{AMP Cache}< 
             +p {
-                The Google AMP Cache can be used to serve cached AMP HTML pages.
-
-                The Google AMP Cache is a proxy-based content delivery network for delivering all valid AMP documents. It fetches AMP HTML pages, caches them, and improves page performance automatically. When using the Google AMP Cache, the document, all JS files and all images load from the same origin that is using HTTP 2.0 for maximum efficiency.
-
-                The cache also comes with a built-in validation system which confirms that the page is guaranteed to work, and that it doesn't depend on external resources. The validation system runs a series of assertions confirming the page’s markup meets the AMP HTML specification.
-
-                Another version of the validator comes bundled with every AMP page. This version can log validation errors directly to the browser’s console when the page is rendered, allowing you to see how complex changes in your code might impact performance and user experience.
-
-                Learn more about testing your AMP HTML pages.
+                Google AMPキャッシュはキャッシュされたAMP HTMLページの配信に役に立ちます。
+                Google AMPキャッシュは全ての正当なAMPドキュメントを配信するプロクシベースCDNです。
+                CDNはAMP HTMLページを取り出し、キャッシュし、ページのパフォーマンスを自動的に改善します。
+                Google AMP Cacheを使うとき、最大効率のため、ドキュメント、JSファイル、イメージの全てが
+                同じ場所からHTTP2で読まれます。
+                またキャッシュは検証システムが組み込まれており、ページが動くことや外部のリソースに依存
+                しないことを保証します。検証システムはページのマークアップがAMP HTML仕様に沿っていることを
+                確認する一連のアサーションを実行します。
+                別の検証ツールが全てのAMPページに付属しています。これは、ページがレンダリングされる際、
+                ブラウザのコンソールに直接バリデーションエラーをログすることができ、それをみることであなたの
+                コードの変化がどのくらい複雑にパフォーマンスやUXに影響を与えたかを確認することが可能です
             }
         >
     >
