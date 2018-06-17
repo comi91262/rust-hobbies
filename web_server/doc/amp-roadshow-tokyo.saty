@@ -272,7 +272,8 @@ document (|
         運用経験ありますか？
         AMP: ３割くらい？
         PWA: あまりいなかった
-
+    }
+    +p {
         先進的な話
         PWAのページの中にAMPを入れよう！
         　利点：
@@ -296,45 +297,58 @@ document (|
     +p {
         Production-ready AMP pages.
         あるWebPageを本番環境に乗せるまでによく起きる問題点と対処方法
-
-        \# Generate
-        手ではつくらない
-        3p CMS (RSS Web, AppliNews)
-        stardard html -\> amp html
-        drupal amp /wordpress amp
-        環境によって、手に入るAMPページが違ったりする。
-        \# Optimize
-        動機：機能追加とか、バグ修正とか
-        \* いらないampを呼ばない
-        \* 必要なCSSのみをloadする Global CSS -\> Local CSS
-        \* Image Optimization, websiteを読んで
-        \# Validate
-        amp pageがスペック（ブラウザ）を満たしているか
-        CI環境に毎回チェックする取り込みましょう！
-        　npm amphtml-validator
-        さらによい方法はモニタリングすること
-        amphtml-validator + cronjobでもよいが
-        -\> GoogleSearchConsole 
-        \# Measure
+    }
+    +subsection{Generate}< 
+        +p {
+            手ではつくらない
+            3p CMS (RSS Web, AppliNews)
+            stardard html -\> amp html
+            drupal amp /wordpress amp
+            環境によって、手に入るAMPページが違ったりする。
+        }
+    > 
+    +subsection{Optimize}< 
+        +p {
+            動機：機能追加とか、バグ修正とか
+            \* いらないampを呼ばない
+            \* 必要なCSSのみをloadする Global CSS -\> Local CSS
+            \* Image Optimization, websiteを読んで
+        }
+    >
+    +subsection{Validate}< 
+        +p {
+            amp pageがスペック（ブラウザ）を満たしているか
+            CI環境に毎回チェックする取り込みましょう！
+            　npm amphtml-validator
+            さらによい方法はモニタリングすること
+            amphtml-validator + cronjobでもよいが
+            -\> GoogleSearchConsole 
+        }
+    > 
+    +subsection{Measure}< 
+        +p {
         lighthouse 
         webpagetest
         \<amp-analytices\>もあるぞ！
         Measure + Collect + Batch
+        }
+    >
+    +subsection{Distribute}< 
+        +p {
+            配信による問題
+            AMP Page - Google 
+            - Bing 
+            - Twitter
 
-        \# Distribute
-        配信による問題
-        AMP Page - Google 
-        - Bing 
-        - Twitter
+            AMP Page -\> metadata -\> cache
 
-        AMP Page -\> metadata -\> cache
+            コース問題: ドメインがなんちゃらでfailすること
+            endpoint-com.ampproject.org -\> endpoint.com
 
-        コース問題: ドメインがなんちゃらでfailすること
-        endpoint-com.ampproject.org -\> endpoint.com
-
-        \<Access-Control-   : htt \>というタグをつける
-        Content mismatch
-    }
+            \<Access-Control-   : htt \>というタグをつける
+            Content mismatch
+        }
+        >
 >
 
 +section{What's next of AMP}<
