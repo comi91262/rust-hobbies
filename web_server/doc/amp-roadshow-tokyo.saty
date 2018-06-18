@@ -24,7 +24,7 @@ document (|
     >
     +section{そもそもAMPとは}<
         +p {
-            https://www.ampproject.org/learn/overview/より
+            https://www.ampproject.org/learn/overview/より, 実は日本語版があるので以下のカタコトの日本語より...
         }
         +p {
             AMPはオープンソースライブラリであり、魅力的で、スムーズでかつ、瞬時にロードできるwebページを簡単に作る方法を提供します。
@@ -35,7 +35,7 @@ document (|
             100以上のテクノロジープロバイダ、主要なプラットフォームが含まれます。
         }
         +p {
-            AMPページは以下の３つのコアコンポーネントで構築される。
+            AMPページは以下の３つのコアコンポーネントで構築されます。
         }
         +listing {
             * AMP HTML
@@ -47,7 +47,7 @@ document (|
                 AMP HTMLは、信頼性のあるパフォーマンスのためにいくつかの
                 制限のあるHTMLです。AMP HTMLは基本的にカスタムAMPプロパティ
                 でHTMLを拡張しています。もっともシンプルなAMP HTMLは次のように
-                なります。               
+                なります　\# styleが存在感があるが実際はワンライン
             }
             +code(`
 <!doctype html>
@@ -130,14 +130,22 @@ document (|
         +p {
             ご質問はhttps://www.sli.do/に投げてください
         }
-        +p {
-            Progressive Web Apps: What, Why and How
+        +pn {
+            AMP勉強の参考サイトは以下。
+        }
+        +listing {
+            * https://www.ampproject.org
+            * https://ampstart.com
+            * https://www.ampbyexample.com
+        }
+        +pn {
+            Progressive Web Apps: What, Why and How \# このメモ、ここでなんでPWAがでできたかわからない
         }
         +pn {
             AMPはオープンソース。Googleとは独立したものとして捉えてください.
         }
         +pn {
-            AMPには3つの部分がある
+            AMPには3つの部分がある. (AMP HTML, AMP JS, AMP Cache)
         }
         +pn {
             HTMLとJSを拡張する（でもJSの拡張はつらいのであとで変えたい）
@@ -145,51 +153,59 @@ document (|
         +pn {
             AMP Cache: Googleのもっているやつ
         }
-        +p {
+        +pn {
             ページロードを3G回線で10sから3,4sに小さくした
             (日本では4Gだけど、世界的には3Gがまだまだ主流)
         }
         +pn {
-            -7\% conversions per 1second delsy
-            3秒以上loadにかかると半分は離脱する。
+            ページロードが１秒遅れるとコンバージョンは7\%低下する。３秒以上かかると
+            ユーザーの半分は離脱する
         }
         +pn {
-            AMPいれると遅くなるから入れられないよね...
-            -\> そこをなんとかします。
+            AMPいれるとページロードが遅くなるから入れられない。このAMP LOADSHOWではその誤解を解きます。
         }
-        +p {
-            AMPはOver 4 billiino site 広範囲に普及している.
-
-
-            Timeline 2015
-            UUeader binding
-            AMP Stories
-            AMP for Email
-            AMP Ads
-            WordPress
-            New URL
+        +pn {
+            AMPサイトは40億を超えている.
         }
-        +p {
+        +pn {
+            以下2015タイムライン
+            \# 図があって右矢印(タイムライン）に以下のコンテンツが時系列順にならんでました
+        }
+        +listing {
+            * Timeline 2015
+            * UUeader binding
+            * AMP Stories
+            * AMP for Email
+            * AMP Ads
+            * WordPress
+            * New URL
+        }
+        +pn {
             2017年の電子商取引収入の半分はモバイルからのものです
         }
-        +p {
+        +pn {
             Ali ExpressのWebサイトの速度改善の例です
         }
         +listing {
             * 36\% led to 10.5 orders
-            * 27\%のコンバージョン(実際にユーザが商品を買った)を増加
-            * AMPで4\%コンバージョンを増加させた
+            * 27\%のコンバージョン増加(そのうち、AMPで4\%のコンバージョンを増加)
         }
-        +p {
-            \< link rel \> が元々の色々追加した
-            PWA \<-\> AMP 
+        +pn {
+            \< link rel \> が元々の色々追加した  \# \?
+        }
+        +pn {
+            PWA \<-\> AMP   \# AとPを入れ替えて、Wと反転させるアニメーションを入れて、二つが密接に関係していることをアピールしていました
+        }
+        +pn {
             AMPはライブラリであると捉えてください
         }
 >
 
 +section{Rich content experiences with AMP}<
-    +p {
-        \@islu
+    +pn {
+        \# このセッションでは具体的なAMP HTMLの解説をしていました
+    }
+    +pn {
         AMP
         CSS 50kb
         JS ばつ
