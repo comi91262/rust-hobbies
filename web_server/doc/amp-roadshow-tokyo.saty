@@ -18,17 +18,17 @@ document (|
         >
         +subsection{このレポートを読む際の注意点}<
             +p {
-                \#から始まる文章は私のコメントである
+                \emph{青字は私のコメントです}
             }
         >
     >
     +section{そもそもAMPとは}<
         +p {
-            https://www.ampproject.org/learn/overview/より, 実は日本語版があるので以下のカタコトの日本語より...
+            https://www.ampproject.org/learn/overview/より, 実は日本語版があるのに訳して気づく。
         }
         +p {
             AMPはオープンソースライブラリであり、魅力的で、スムーズでかつ、瞬時にロードできるwebページを簡単に作る方法を提供します。
-            AMPページは、あなたによって制御でき、あなたがリンクできる単なるウェブページでしかありません。
+            AMPページは、あなたによってコントロールでき、あなたがリンクできる単なるウェブページでしかありません。
             AMPはあなたに既にあるスキルセットやWebページをつくるフレームワークで構築することができます。
             AMPは多くの異なったプラットフォームでサポートされていて、ブラウザ間で互換性を保ちます。
             AMPエコシステムには、出版、広告、電子商取引、地方や小規模企業など、2500万のドメイン、
@@ -47,7 +47,7 @@ document (|
                 AMP HTMLは、信頼性のあるパフォーマンスのためにいくつかの
                 制限のあるHTMLです。AMP HTMLは基本的にカスタムAMPプロパティ
                 でHTMLを拡張しています。もっともシンプルなAMP HTMLは次のように
-                なります　\# styleが存在感があるが実際はワンライン
+                なります。\emph{styleタグ、存在感があるが実際はワンライン}
             }
             +code(`
 <!doctype html>
@@ -127,19 +127,13 @@ document (|
         >
     >
     +section{Introduction and Keynote}<
-        +p {
-            ご質問はhttps://www.sli.do/に投げてください
-        }
         +pn {
-            AMP勉強の参考サイトは以下。
+            ご質問はhttps://www.sli.do/に投げてください. AMP勉強の参考サイトは以下。
         }
         +listing {
             * https://www.ampproject.org
             * https://ampstart.com
             * https://www.ampbyexample.com
-        }
-        +pn {
-            Progressive Web Apps: What, Why and How \# このメモ、ここでなんでPWAがでできたかわからない
         }
         +pn {
             AMPはオープンソース。Googleとは独立したものとして捉えてください.
@@ -168,12 +162,11 @@ document (|
             AMPサイトは40億を超えている.
         }
         +pn {
-            以下2015タイムライン
-            \# 図があって右矢印(タイムライン）に以下のコンテンツが時系列順にならんでました
+            以下2015までのタイムライン
+            \emph{図があって右矢印(タイムライン）に以下のコンテンツが時系列順にならんでました}
         }
         +listing {
-            * Timeline 2015
-            * UUeader binding
+            * Header Bidding
             * AMP Stories
             * AMP for Email
             * AMP Ads
@@ -188,13 +181,10 @@ document (|
         }
         +listing {
             * 36\% led to 10.5 orders
-            * 27\%のコンバージョン増加(そのうち、AMPで4\%のコンバージョンを増加)
+            * 27\%のコンバージョン増加 (そのうち、AMPで4\%のコンバージョンを増加)
         }
         +pn {
-            \< link rel \> が元々の色々追加した  \# \?
-        }
-        +pn {
-            PWA \<-\> AMP   \# AとPを入れ替えて、Wと反転させるアニメーションを入れて、二つが密接に関係していることをアピールしていました
+            PWA \<-\> AMP \emph{AとPを入れ替えて、Wと反転させるアニメーションを入れて、二つが密接に関係していることをアピールしていました}
         }
         +pn {
             AMPはライブラリであると捉えてください
@@ -203,25 +193,38 @@ document (|
 
 +section{Rich content experiences with AMP}<
     +pn {
-        \# このセッションでは具体的なAMP HTMLの解説をしていました
+        \emph{このセッションでは具体的なAMP HTMLの解説をしていました}
     }
     +pn {
         AMP
         CSS 50kb
-        JS ばつ
-
-        Web Compornetsでもっとも成功した例
-        複雑を単純に、
-        　AMP ライブラリ
-        煩雑なレスポインシブル
-
-        \* レスポんしぶる CSSどうやるの？
-
-        layout 属性　responsible - アスペクト比を合わせてブラウザの拡張
-        　　　　　　　　　　　　　　　　にあわせて拡張
-        full
-        srcset属性　　AMPだとpolyfill古いやつでも可能
-
+        JS ばつ \emph{ここは何を書きたかったのか...}
+    }
+    +pn {
+        AMPはWeb Componentsで最も成功した例
+    }
+    +pn {
+        複雑を単純に
+    }
+    +pn {
+        AMP ライブラリは煩雑なレスポンシブをどうやるのか \emph{発音はレスポンインシブルでした}
+        コードは以下. layout属性にresponsiveを設定すると、要素の幅はコンテナ要素(divとか)の幅に等しくなり、
+        高さについては、幅と高さの属性によって決まるアスペクト比になるよう自動的に調整されます。
+        srcset属性が画面の幅に基づいて使用される画像を指定します。AMPだとpolyfillが古いやつでも利用可能
+        \emph{CSSで頑張って記述しなくていいのが利点か}
+    }
+    +code(`
+<amp-img
+    src="/img/narrow.jpg"
+    srcset="/img/wide.jpg 640w,
+           /img/narrow.jpg 320w"
+    width="1698"
+    height="2911"
+    layout="responsive"
+    alt="an image">
+</amp-img>
+    `);
+    +pn {
         amp-youtube 動画IDからパフォーマンスを落とさず、埋め込み可能
         amp-twiiter
         amp-gist    gistを普通に読み込むとパフォーマンスが落ちるが
@@ -234,40 +237,70 @@ document (|
         ...
         amp-social-hoge
         ネイティブのシェアを起動できる
-
-        時ドメインからアMPを配信する場合 AMP Cacheほどはやくならない
+    }
+    +pn {
+        自ドメインからAMPを配信する場合 AMP Cacheほどはやくならない
+    }
+    +pn {
         amp-toolbox-optimizer
         AMP Cache同等の最適化を提供するnode モジュール
 
-
+    }
+    +pn {
         試したいなら　AMP プレイグラウンドがあります
+    }
+    +pn {
         例：Ali Express, 一休.com
+    }
+    +pn {
         AMP Startにサンプルがあります
+    }
+    +pn {
         AMPでウェブページが作れるぞ！を覚えて帰ってください
     }
 >
 
 +section{Advanced interactivity with AMP}<
-    +p { 
+    +pn { 
+        \emph{このセッションでも引き続き具体的なAMP HTMLの解説をしていましたのですが、インタラクティブなコンテンツを
+        提供するための方法を説明されていました}
+    }
+    +pn { 
            User -\> AMP Page \<- AMP Cache
+    }
+    +pn { 
            欲しいものリスト コメントをする
+    }
+    +pn { 
            \<amp-selector\>
            色を、量、サイズをウェブサイト上で選択させる場合に使用する
+    }
+    +pn { 
            \<amp-list\> & \<amp-mustace\>
+    }
+    +pn { 
            \<amp-bind\>
            reactとかのやつができる　data-binding
+    }
+    +pn { 
            Combinig components
            X + Y = ?
     }
 >
 
 +section{Progressive Web AMPs}<
-    +p {
-        PWA：　ブラウザのAPIの組み合わせです。
+    +pn { 
+        \emph{メインはPWAの話ですが、後半はPWAでAMPをやるエモい話でした}
+    }
+    +pn {
+        PWAはブラウザAPIの組み合わせ。
+    }
+    +pn {
         ネイティブアプリは...
         80\% of users' top 3 apps　残り20を奪う
         一ヶ月につきインストールするアプリの平均は0%
-
+    }
+    +pn { 
         Service Workers: A clinet-side JavaScript proxy
         使い方
         \<link rel="manifest" href="/manifest.json"\>
