@@ -463,24 +463,26 @@ document (|
         　理由　viewportの設定が煩雑
         　 　　　tracking要素に使われるのは1つ 
         analystiクラックできる amp-pixel
-
-        AMP pageからAMP pageへ遷移するとき 
-        キャッシュのURLを指定して高速化を図りたい
-        　　　　　　　ことがあるのですが、現状スマートな実現方法はありますか？
+    }
+    +pn {
+        AMP pageからAMP pageへ遷移するときキャッシュのURLを指定して高速化を図りたいことがあるのですが、現状スマートな実現方法はありますか？
         -\> 検討中
-
+    }
+    +pn {
         ampに適さないパターンは？　google docsとか
         もともと、mobile webを高速にするために生まれた。
 
         　ec2サイトでローディングを加速するために使ってください
         js や cssが複雑かしてサイトは遅くなってるので
-
+    }
+    +pn {
         amp reactやamp angularはでてこないよ
         jsがampになるかもしれけどね
 
         　クッキーにpersonalizeデータを持たせて、できる
         ..なんの話だったか
-
+    }
+    +pn {
         フルアンプのサイトはある？　ない。
     }
 >
