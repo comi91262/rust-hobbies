@@ -307,6 +307,8 @@ document (|
         manifext.json
         \< start_url = "" \> 
 
+    }
+    +pn {
         PWA or AMP? 別に対比するものではなく、共存可能
 
         AMP = web page = PWA
@@ -317,6 +319,8 @@ document (|
         \<amp-install-serviceworker\>
         URLをserviceworker内で書き換える？
 
+    }
+    +pn {
 
         運用経験ありますか？
         AMP: ３割くらい？
