@@ -211,7 +211,7 @@ document (|
         コードは以下. layout属性にresponsiveを設定すると、要素の幅はコンテナ要素(divとか)の幅に等しくなり、
         高さについては、幅と高さの属性によって決まるアスペクト比になるよう自動的に調整されます。
         srcset属性が画面の幅に基づいて使用される画像を指定します。AMPだとpolyfillが古いやつでも利用可能
-        \emph{CSSで頑張って記述しなくていいのが利点か}
+        \emph{CSSを頑張って記述しなくていいのが利点か}
     }
     +code(`
 <amp-img
@@ -225,35 +225,45 @@ document (|
 </amp-img>
     `);
     +pn {
-        amp-youtube 動画IDからパフォーマンスを落とさず、埋め込み可能
-        amp-twiiter
-        amp-gist    gistを普通に読み込むとパフォーマンスが落ちるが
-        　　　　　　　　　　
-        amp-carousel パフォーマンスを落とさない！カルーセル
-        controlsをつける、
-
-        amp-accordion
-        amp-ligntbox
-        ...
-        amp-social-hoge
-        ネイティブのシェアを起動できる
+        \<amp-youtube\> 動画IDからパフォーマンスを落とさず、埋め込み可能
+    }
+    +code(`
+<amp-youtube
+    data-videoid="mGENRKrdoGY"
+    layout="responsive"
+    width="480" height="270"></amp-youtube>
+    `);
+    +pn {
+        \<amp-twiiter\>
     }
     +pn {
+        \<amp-gist\>   gistを普通に読み込むとパフォーマンスが落ちるが
+    }
+    +pn {
+        \<amp-carousel\> パフォーマンスを落とさないカルーセル controlsをつける
+    }
+    +pn {
+        \<amp-accordion\>
+        \<amp-ligntbox\>
+    }
+    +pn {
+        \<amp-social-hoge\> ネイティブのシェアを起動できる
         自ドメインからAMPを配信する場合 AMP Cacheほどはやくならない
     }
     +pn {
-        amp-toolbox-optimizer
+        \<amp-toolbox-optimizer\>
         AMP Cache同等の最適化を提供するnode モジュール
-
     }
     +pn {
-        試したいなら　AMP プレイグラウンドがあります
+        試したいなら, AMP プレイグラウンドがあります
+        https://ampbyexample.com/playground/
     }
     +pn {
         例：Ali Express, 一休.com
     }
     +pn {
         AMP Startにサンプルがあります
+        https://www.ampstart.com/
     }
     +pn {
         AMPでウェブページが作れるぞ！を覚えて帰ってください
@@ -266,25 +276,25 @@ document (|
         提供するための方法を説明されていました}
     }
     +pn { 
-           User -\> AMP Page \<- AMP Cache
+        User -\> AMP Page \<- AMP Cache
     }
     +pn { 
-           欲しいものリスト コメントをする
+        欲しいものリスト コメントをする
     }
     +pn { 
-           \<amp-selector\>
-           色を、量、サイズをウェブサイト上で選択させる場合に使用する
+        \<amp-selector\>
+        色を、量、サイズをウェブサイト上で選択させる場合に使用する
     }
     +pn { 
-           \<amp-list\> & \<amp-mustace\>
+        \<amp-list\> & \<amp-mustace\>
     }
     +pn { 
-           \<amp-bind\>
-           reactとかのやつができる　data-binding
+        \<amp-bind\>
+        reactとかのやつができる　data-binding
     }
     +pn { 
-           Combinig components
-           X + Y = ?
+        Combinig components
+        X + Y = ?
     }
 >
 
