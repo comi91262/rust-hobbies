@@ -243,8 +243,7 @@ document (|
         \<amp-carousel\> パフォーマンスを落とさないカルーセル controlsをつける
     }
     +pn {
-        \<amp-accordion\>
-        \<amp-ligntbox\>
+        他、\<amp-accordion\>や\<amp-ligntbox\>など
     }
     +pn {
         \<amp-social-hoge\> ネイティブのシェアを起動できる
@@ -306,9 +305,9 @@ document (|
         PWAはブラウザAPIの組み合わせ。
     }
     +pn {
-        ネイティブアプリは...
-        80\% of users' top 3 apps　残り20を奪う
-        一ヶ月につきインストールするアプリの平均は0%
+        ネイティブアプリ。ユーザーは３つのアプリに,アプリに使う時間の８割
+        を使っている。残りの２割を新規のアプリは奪う必要がある。
+        また、一ヶ月につきインストールするアプリの平均は0%
     }
     +pn { 
         Service Workers: A clinet-side JavaScript proxy
@@ -331,10 +330,7 @@ document (|
 
     }
     +pn {
-
-        運用経験ありますか？
-        AMP: ３割くらい？
-        PWA: あまりいなかった
+        質問：運用経験ありますか？ AMP: ３割くらい. PWA: あまりいなかった.
     }
     +p {
         先進的な話
