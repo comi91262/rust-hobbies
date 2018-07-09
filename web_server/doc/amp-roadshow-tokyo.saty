@@ -584,11 +584,25 @@ document (|
     \# Ensure that post click exprimence
         }
         +pn {
-
     Using AMP for your Adword langing page.
     結局
     　４パターンのマネタイズの方法があります。
     }
+>
++section{Codelabs to learn AMPs}<
+    +subsection{AMPの基本} <
+        +pn {
+
+        }
+    > 
+    +subsection{インタラクティブなAMPページを作成する} <
+        +pn {前書き: \<amp-bind\>を用いてインタラクティブなAMPページを作るためにdata bindingの方法を学ぶ。
+            ここでは、e-コマースの製品ページをつくる。
+            要点：使用する技術: 速く,リッチなUXを持ったAMP HTML, AMPコンポーネントを使う。
+            \<amp-bind\> を使用して、要素間のインタラクティブ性を追加する。
+            \<amp-state\> を使用して、必要に応じて別の商品データを取得する。
+        }
+    >
 >
 >
 
