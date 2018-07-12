@@ -33,10 +33,11 @@ fn index() -> Template {
     Template::render("index", context)
 }
 
-//#[get("/<path..>")]
-//fn image(path: PathBuf) -> Option<NamedFile> {
-//    NamedFile::open(Path::new("templates/").join(path)).ok()
-//}
+
+#[get("/<file..>")]
+fn files(file: PathBuf) -> Option<NamedFile> {
+    NamedFile::open(Path::new("static/").join(file)).ok()
+}
 
 fn main() {
     rocket::ignite().mount("/", routes![index, files])
@@ -102,18 +103,6 @@ fn main() {
 //  },
 //};
 
-// 静的なコンテンツにアクセスできる
-//app.use('/', express.static('static'));
-#[get("/<file..>")]
-fn files(file: PathBuf) -> Option<NamedFile> {
-    NamedFile::open(Path::new("static/").join(file)).ok()
-}
-
-//#[get("/")]
-//fn index() -> &'Template {
-//    let mut context: HashMap::<u8, u8> = HashMap::new();
-//    Template::render("index", context)
-//}
 
 //app.get('/shirts/sizesAndPrices', function(req, res) {
 //
