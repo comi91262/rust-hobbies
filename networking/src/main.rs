@@ -13,7 +13,6 @@ fn run() {
     println!("Status: {}", res.status());
     println!("Headers:\n{}", res.headers());
     println!("Body:\n{}", body);
-
 }
 
 //extern crate url;

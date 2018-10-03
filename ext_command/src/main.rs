@@ -2,10 +2,10 @@
 extern crate error_chain;
 extern crate regex;
 
-use std::path::Path;
-use std::process::Command;
 use regex::Regex;
 use std::env;
+use std::path::Path;
+use std::process::Command;
 
 error_chain!{
     errors {
@@ -43,26 +43,23 @@ fn run() -> Result<()> {
             let path = cap[2].to_string();
             let src_path = Path::new(&path);
             let dest_path = dest_path.join(&path);
-            println!("source:      {:?}",  src_path);
+            println!("source:      {:?}", src_path);
             println!("destination: {:?}", dest_path);
-            Command::new("cp").arg(src_path.as_os_str()).arg(dest_path.as_os_str()).spawn()
+            Command::new("cp")
+                .arg(src_path.as_os_str())
+                .arg(dest_path.as_os_str())
+                .spawn()
         });
-
 
     Ok(())
 }
 
-fn main(){
+fn main() {
     match run() {
-        Err(e) => {
-            match e.into() {
-                ErrorKind::ArgError => println!("Usage: light-deploy PATH"),
-                _ => println!("Something is wrong")
-            }
-        }
-        _ => println!("Execution is completed")
+        Err(e) => match e.into() {
+            ErrorKind::ArgError => println!("Usage: light-deploy PATH"),
+            _ => println!("Something is wrong"),
+        },
+        _ => println!("Execution is completed"),
     }
-
 }
-
-

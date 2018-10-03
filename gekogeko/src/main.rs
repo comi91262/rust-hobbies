@@ -1,24 +1,21 @@
 extern crate colored;
 
-use std::slice::Iter;
-use std::{thread, time};
-use std::time::Duration;
-use std::io::Write;
-use std::io::stdout;
 use colored::*;
+use std::io::stdout;
+use std::io::Write;
+use std::slice::Iter;
+use std::time::Duration;
+use std::{thread, time};
 
 const INTERVAL1: Duration = time::Duration::from_millis(500);
 const INTERVAL2: Duration = time::Duration::from_millis(500 * 7);
 const WAIT_TIME: Duration = time::Duration::from_millis(500 * 36 * 8);
 
-
 const LYLIC: [char; 36] = [
-    'か','え','る','の','う','た','が',
-    'き','こ','え','て','く','る','よ',
-    'ぐ','わ','ぐ','わ','ぐ','わ','ぐ','わ',
-    'げ','ろ','げ','ろ','げ','ろ','げ','ろ',
-    'ぐ','わ','ぐ','わ','ぐ','わ'
-    ];
+    'か', 'え', 'る', 'の', 'う', 'た', 'が', 'き', 'こ', 'え', 'て', 'く', 'る',
+    'よ', 'ぐ', 'わ', 'ぐ', 'わ', 'ぐ', 'わ', 'ぐ', 'わ', 'げ', 'ろ', 'げ', 'ろ',
+    'げ', 'ろ', 'げ', 'ろ', 'ぐ', 'わ', 'ぐ', 'わ', 'ぐ', 'わ',
+];
 
 enum Color {
     Red,
@@ -28,12 +25,21 @@ enum Color {
     Yellow,
     Magenta,
     Black,
-    White
+    White,
 }
 
 impl Color {
     pub fn iterator() -> Iter<'static, Color> {
-        static COLORS: [Color; 8] = [Color::Black, Color::Red, Color::Blue, Color::Green,Color::Cyan, Color::Yellow, Color::Magenta, Color::White];
+        static COLORS: [Color; 8] = [
+            Color::Black,
+            Color::Red,
+            Color::Blue,
+            Color::Green,
+            Color::Cyan,
+            Color::Yellow,
+            Color::Magenta,
+            Color::White,
+        ];
         COLORS.into_iter()
     }
 }
@@ -65,5 +71,4 @@ fn main() {
     }
 
     thread::sleep(WAIT_TIME);
-
 }
