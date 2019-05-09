@@ -12,7 +12,7 @@ pub struct Point {
 }
 
 const WIDTH: u32 = 800;
-const HEIGHT: u32 = 600;
+const HEIGHT: u32 = 800;
 const A: Point = Point { x: WIDTH / 2, y: 0 };
 const B: Point = Point { x: 0, y: HEIGHT };
 const D: Point = Point {
@@ -20,8 +20,8 @@ const D: Point = Point {
     y: HEIGHT,
 };
 
-pub static mut PRE_X: u32 = 0;
-pub static mut PRE_Y: u32 = 0;
+pub static mut PRE_X: u32 = 400;
+pub static mut PRE_Y: u32 = 400;
 
 pub fn generate() -> Point {
     // let mut os_rng = OsRng::new().unwrap();
@@ -37,15 +37,13 @@ pub fn generate() -> Point {
         _ => unreachable!(),
     };
 
-unsafe {
-    let x =  (p.x + PRE_X) / 2;
-    let y =  (p.y + PRE_Y) / 2;
-    PRE_X = x;
-    PRE_Y = y;
-    Point { x: x, y: y }
-}
-
-
+    unsafe {
+        let x = (p.x + PRE_X) / 2;
+        let y = (p.y + PRE_Y) / 2;
+        PRE_X = x;
+        PRE_Y = y;
+        Point { x: x, y: y }
+    }
 }
 
 // interner Zustand
