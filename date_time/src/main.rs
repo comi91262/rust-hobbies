@@ -1,6 +1,3 @@
-fn main() {
-    println!("Hello, world!");
-}
 extern crate chrono;
 use chrono::{Datelike, Timelike, Utc};
 
